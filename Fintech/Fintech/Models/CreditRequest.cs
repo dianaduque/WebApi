@@ -6,8 +6,9 @@ namespace Fintech.Models
     public partial class CreditRequest
     {
         public int Id { get; set; }
-        public int Customer { get; set; }
-        public double AmountRequest { get; set; }
-        public string Comments { get; set; } = null!;
+        public int? Customer { get; set; }
+        public double? AmountRequest { get; set; }
+        public string? Comments { get; set; }
+        public string? Imagen { get; set; }
     }
 }

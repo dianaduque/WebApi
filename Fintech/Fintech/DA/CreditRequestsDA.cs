@@ -13,48 +13,64 @@ namespace Fintech.DA
             _context = context;
         }
 
-        public async Task CreateCreditRequest(CreditRequest CreditRequest, Customer customer)
+        public async Task<int> CreateCreditRequest(string imagen)
         {
+            CreditRequest creditRequest = new CreditRequest();
+            creditRequest.Imagen = imagen;
+
+            _context.Add(creditRequest);
+            await _context.SaveChangesAsync();
+
+            return creditRequest.Id;
+        }
+
+        public async Task<CreditRequest> UpdateCreditRequest(CreditRequest creditRequest, Customer customer)
+        {
+            var creditRequestActual = await _context.CreditRequests.FirstOrDefaultAsync(m => m.Id == creditRequest.Id);
+
+            creditRequestActual.AmountRequest = creditRequest.AmountRequest;
+            creditRequestActual.Comments = creditRequest.Comments;
 
             _context.Add(customer);
             await _context.SaveChangesAsync();
-            CreditRequest.Customer = customer.Id;
+            creditRequestActual.Customer = customer.Id;
 
-            _context.Add(CreditRequest);
+            _context.Update(creditRequestActual);
             await _context.SaveChangesAsync();
 
+            return creditRequestActual;
         }
 
         public async Task CreateCreditEvaluation(CreditEvaluation evaluation)
         {
-
             _context.Add(evaluation);
             await _context.SaveChangesAsync();
-
         }
 
-        public List<CreditRequestDTO> GetCreditRequestPenddingApproved()
+        public List<CreditRequestDTOPending> GetCreditRequestPenddingApproved()
         {
-            var creditRequest = (from credit in _context.CreditRequests
-                                 join evaluation in _context.CreditEvaluations
-                                    on credit.Id equals evaluation.CreditRequest into j1
-                                 from r in j1.DefaultIfEmpty()
+
+            var recs = _context.CreditRequests.Where(x => !_context.CreditEvaluations.Any(y => y.CreditRequest == x.Id));
+
+            var creditRequest = (from credit in _context.CreditRequests.Where(x => !_context.CreditEvaluations.Any(y => y.CreditRequest == x.Id))                             
                                  join customer in _context.Customers
-                                    on credit.Customer equals customer.Id
-                                 select new CreditRequestDTO()
-                                 {
-                                     Id = credit.Id,
-                                     CustomerDto = new (credit.Customer, customer.FullName, customer.BirthDate, customer.IdentityType, customer.IdentityNumber, customer.Email, customer.CellPhoneNumber, customer.Salary),
-                                     AmountRequest = credit.AmountRequest,
-                                     Comments = credit.Comments
-                                 }).ToList();
+                                     on credit.Customer equals customer.Id
+
+                                  select new CreditRequestDTOPending()
+                                  {
+                                      Id = credit.Id,
+                                      Fullname = customer.FullName,
+                                      IdentityNumber = customer.IdentityNumber,
+                                      AmountRequest = credit.AmountRequest,
+                                      Comments = credit.Comments
+                                  }).ToList();
+
 
             return creditRequest;
 
-
         }
        
-        public async Task<CreditRequestDTO> GetCreditRequestDetails(int? id)
+        public async Task<CreditRequestDTOPending> GetCreditRequestDetails(int? id)
         {
             var creditRequest = await _context.CreditRequests.FirstOrDefaultAsync(m => m.Id == id);
             var customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == creditRequest.Customer);
@@ -62,15 +78,16 @@ namespace Fintech.DA
             if (creditRequest == null || customer == null)
                 return null;
 
-            CreditRequestDTO creditRequestDTO = new CreditRequestDTO()
+            CreditRequestDTOPending creditRequestDTO = new CreditRequestDTOPending()
             {
                 Id = creditRequest.Id,
-                CustomerDto = new(creditRequest.Customer, customer.FullName, customer.BirthDate, customer.IdentityType, customer.IdentityNumber, customer.Email, customer.CellPhoneNumber, customer.Salary),
+                Fullname = customer.FullName,
+                IdentityNumber = customer.IdentityNumber,
                 AmountRequest = creditRequest.AmountRequest,
                 Comments = creditRequest.Comments
             };
-
             return creditRequestDTO;
         }
+      
     }
 }

@@ -1,12 +1,11 @@
 ﻿namespace Fintech.DTOs
 {
-    public class CreditRequestDTO
+    public class CreditRequestDTOPending
     {
         public int Id { get; set; }
-        public CustomerDTO? CustomerDto { get; set; } 
+        public string Fullname { get; set; }
         public double? AmountRequest { get; set; }
         public string? Comments { get; set; }
-        public string? Imagen { get; set; }
-
+        public string? IdentityNumber { get; set; }
     }
 }

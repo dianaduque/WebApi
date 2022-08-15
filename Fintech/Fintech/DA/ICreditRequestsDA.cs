@@ -5,10 +5,11 @@ namespace Fintech.DA
 {
     public interface ICreditRequestsDA
     {
-        Task CreateCreditRequest(CreditRequest CreditRequest, Customer customer);
+        Task<int> CreateCreditRequest(string imagen);
+        Task<CreditRequest> UpdateCreditRequest(CreditRequest CreditRequest, Customer customer);
         Task CreateCreditEvaluation(CreditEvaluation evaluation);
-        List<CreditRequestDTO> GetCreditRequestPenddingApproved();
+        List<CreditRequestDTOPending> GetCreditRequestPenddingApproved();
 
-        Task<CreditRequestDTO> GetCreditRequestDetails(int? id);
+        Task<CreditRequestDTOPending> GetCreditRequestDetails(int? id);
     }
 }

@@ -9,6 +9,8 @@ using Fintech.Models;
 using AutoMapper;
 using Fintech.DTOs;
 using Fintech.DA;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Fintech.Controllers
 {
@@ -25,10 +27,11 @@ namespace Fintech.Controllers
         }
 
         [HttpPost]
-        [Route("Login")]
+        [Route("user/Login")]
         public async Task<IActionResult> Login([FromBody] UserDTO user)
         {
             User userVO = await _userDA.Login(user.UserName, user.Password);
+
 
             if (userVO != null)
                 return Ok(_mapper.Map<UserDTO>(userVO));

@@ -260,3 +260,6 @@ F:\DV\dev_my\WebApi\Fintech\Fintech\bin\Debug\net6.0\runtimes\win\lib\net6.0\Sys
 F:\DV\dev_my\WebApi\Fintech\Fintech\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 F:\DV\dev_my\WebApi\Fintech\Fintech\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 F:\DV\dev_my\WebApi\Fintech\Fintech\bin\Debug\net6.0\AutoMapper.dll
+F:\DV\dev_my\WebApi\Fintech\Fintech\bin\Debug\net6.0\MailKit.dll
+F:\DV\dev_my\WebApi\Fintech\Fintech\bin\Debug\net6.0\MimeKit.dll
+F:\DV\dev_my\WebApi\Fintech\Fintech\bin\Debug\net6.0\BouncyCastle.Crypto.dll

@@ -4,8 +4,26 @@ using Fintech.Models;
 using AutoMapper;
 using Fintech.DTOs;
 using Fintech.DA;
+using Fintech.Util;
+
+//Enable cors
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Enable cors
+builder.Services.AddCors(options =>
+{
+
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://172.24.27.177:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddDbContext<FintechContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FintechContext") ?? throw new InvalidOperationException("Connection string 'FintechContext' not found.")));
 
@@ -30,7 +48,14 @@ builder.Services.AddSingleton(mapper);
 //Injectar servies
 builder.Services.AddTransient<IUserDA, UserDA>();
 builder.Services.AddTransient<ICreditRequestsDA, CreditRequestsDA>();
+builder.Services.AddTransient<IIdentityTypeDA, IdentityTypeDA>();
+builder.Services.AddTransient<ICustomerDA, CustomerDA>();
+builder.Services.AddTransient<IFileService, FileService>();
+builder.Services.AddTransient<IEmailService, EmailService>();
 //FinInjectar servies
+
+
+
 
 var app = builder.Build();
 
@@ -43,8 +68,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
+//Enable cors
+app.UseCors(MyAllowSpecificOrigins);
+
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();

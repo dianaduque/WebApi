@@ -36,7 +36,9 @@ namespace Fintech.Models
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Comments).HasMaxLength(200);
+                entity.Property(e => e.Comments).HasMaxLength(400);
+
+                entity.Property(e => e.Imagen).HasMaxLength(200);
             });
 
             modelBuilder.Entity<Customer>(entity =>
