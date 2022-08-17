@@ -27,7 +27,7 @@ namespace Fintech.Util
 
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("dianna.mohr82@ethereal.email", "pbJp6weGPdMBjUb9Sd");
+            smtp.Authenticate("taylor.daniel@ethereal.email", "rz3shnPPm8JJTugyPJ");
             smtp.Send(email);
             smtp.Disconnect(true);
         }

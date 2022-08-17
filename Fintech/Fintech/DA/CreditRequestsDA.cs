@@ -17,6 +17,7 @@ namespace Fintech.DA
         {
             CreditRequest creditRequest = new CreditRequest();
             creditRequest.Imagen = imagen;
+            creditRequest.IsCompleted = false;
 
             _context.Add(creditRequest);
             await _context.SaveChangesAsync();
@@ -49,10 +50,10 @@ namespace Fintech.DA
 
         public List<CreditRequestDTOPending> GetCreditRequestPenddingApproved()
         {
+            //var recs1 = _context.CreditRequests.Where(x => x.IsCompleted == false && !_context.CreditEvaluations.Any(y => y.CreditRequest == x.Id));
+            //var recs = _context.CreditRequests.Where(x => !_context.CreditEvaluations.Any(y => y.CreditRequest == x.Id));
 
-            var recs = _context.CreditRequests.Where(x => !_context.CreditEvaluations.Any(y => y.CreditRequest == x.Id));
-
-            var creditRequest = (from credit in _context.CreditRequests.Where(x => !_context.CreditEvaluations.Any(y => y.CreditRequest == x.Id))                             
+            var creditRequest = (from credit in _context.CreditRequests.Where(x => x.IsCompleted == true && !_context.CreditEvaluations.Any(y => y.CreditRequest == x.Id))
                                  join customer in _context.Customers
                                      on credit.Customer equals customer.Id
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fintech.Models
+namespace FilesBatchService.Models
 {
     public partial class CreditRequest
     {
