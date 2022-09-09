@@ -1,12 +1,13 @@
-﻿using Fintech.DTOs;
-using Fintech.Models;
+﻿using Fintech.Domain.Model;
+using Fintech.DTOs;
+using Fintech.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fintech.DA
 {
     public class CreditRequestsDA : ICreditRequestsDA
     {
-        private readonly FintechContext _context;
+       /* private readonly FintechContext _context;
 
         public CreditRequestsDA(FintechContext context)
         {
@@ -89,6 +90,6 @@ namespace Fintech.DA
             };
             return creditRequestDTO;
         }
-      
+     */ 
     }
 }

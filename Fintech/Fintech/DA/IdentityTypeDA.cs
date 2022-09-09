@@ -1,14 +1,16 @@
-﻿using Fintech.Models;
+﻿using Fintech.Domain.Model;
+using Fintech.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fintech.DA
 {
     public interface IIdentityTypeDA
     {
-        Task<List<IdentityType>> GetIdentityTypes();
+        //Task<List<IdentityType>> GetIdentityTypes();
     }
     public class IdentityTypeDA : IIdentityTypeDA
     {
+        /*
         private readonly FintechContext _context;
 
         public IdentityTypeDA(FintechContext context)
@@ -20,5 +22,6 @@ namespace Fintech.DA
         {
             return _context.IdentityTypes.ToListAsync();
         }
+        */
     }
 }

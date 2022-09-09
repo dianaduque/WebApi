@@ -1,10 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Fintech.Models;
-using AutoMapper;
-using Fintech.DTOs;
+﻿using AutoMapper;
+using Fintech.Application.Services;
+using Fintech.Application.UseCases.CreateCredit;
+using Fintech.Application.UseCases.CreateCreditEvaluation;
+using Fintech.Application.UseCases.GetCredit;
+using Fintech.Application.UseCases.GetCreditsPendding;
+using Fintech.Application.UseCases.GetIdentityType;
+using Fintech.Application.UseCases.Login;
+using Fintech.Application.UseCases.UploadImagenCredit;
 using Fintech.DA;
-using Fintech.Util;
+using Fintech.Domain;
+using Fintech.DTOs;
+using Fintech.Infrastructure.DataAccess;
+using Fintech.Infrastructure.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 //Enable cors
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -46,12 +54,29 @@ builder.Services.AddSingleton(mapper);
 //Fin Mapper
 
 //Injectar servies
-builder.Services.AddTransient<IUserDA, UserDA>();
-builder.Services.AddTransient<ICreditRequestsDA, CreditRequestsDA>();
+
+/*builder.Services.AddTransient<ICreditRequestsDA, CreditRequestsDA>();
 builder.Services.AddTransient<IIdentityTypeDA, IdentityTypeDA>();
-builder.Services.AddTransient<ICustomerDA, CustomerDA>();
+builder.Services.AddTransient<ICustomerDA, CustomerDA>();*/
 builder.Services.AddTransient<IFileService, FileService>();
 builder.Services.AddTransient<IEmailService, EmailService>();
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<ICreditRepository, CreditRepository>();
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+builder.Services.AddTransient<IIdentityTypeRepository, IdentityTypeRepository>();
+
+
+builder.Services.AddTransient<ILoginUseCase, LoginUseCase>();
+builder.Services.AddTransient<IUploadImagenCreditUseCase, UploadImagenCreditUseCase>();
+builder.Services.AddTransient<IGetCreditsPenddingUseCase, GetCreditsPenddingUseCase>();
+builder.Services.AddTransient<IGetCreditUserCase, GetCreditUserCase>();
+builder.Services.AddTransient<ICreateCreditEvaluationUserCase, CreateCreditEvaluationUserCase>();
+builder.Services.AddTransient<ICreateCreditUseCase, CreateCreditUseCase>();
+builder.Services.AddTransient<IGetIdentityTypeUserCase, GetIdentityTypeUserCase>();
+
+
+
 //FinInjectar servies
 
 

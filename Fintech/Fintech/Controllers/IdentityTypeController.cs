@@ -6,8 +6,12 @@ namespace Fintech.Controllers
 {
     [EnableCors("_myAllowSpecificOrigins")]
     public class IdentityTypeController : Controller
-    {
+    {/*
         private readonly IIdentityTypeDA _identityTypeDA;
+
+
+
+
 
         public IdentityTypeController(IIdentityTypeDA identityTypeDA)
         {
@@ -20,7 +24,12 @@ namespace Fintech.Controllers
         {
             var identityTypes = await _identityTypeDA.GetIdentityTypes();
 
+            
+
+
+            
+
             return Ok(identityTypes);
-        }
+        }*/
     }
 }

@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using Fintech.Application.Services;
 using Fintech.DA;
+using Fintech.Domain.Model;
 using Fintech.DTOs;
-using Fintech.Models;
-using Fintech.Util;
+using Fintech.Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,7 @@ namespace Fintech.Controllers
 {
     [EnableCors("_myAllowSpecificOrigins")]
     public class CreditRequestsController : Controller
-    {
+    {/*
         private readonly FintechContext _context;
         private readonly IMapper _mapper;
         private readonly ICreditRequestsDA _creditRequestsDA;
@@ -113,7 +114,7 @@ namespace Fintech.Controllers
             _emailService.Send(to, "Evaluacion Solicitud", creditRequest.IsApproved ? approval_message : reject_message + creditRequest.Comments);
 
             return Ok(_mapper.Map<CreditEvaluationDTO>(ceditEvaluationVO));
-        }
+        }*/
 
 /*
 

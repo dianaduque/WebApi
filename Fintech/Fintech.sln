@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fintech", "Fintech\Fintech.csproj", "{E9FE18D9-22E2-49BB-8B23-2818B96E5033}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesBatchService", "FilesBatchService\FilesBatchService.csproj", "{0C1667C3-48F7-4002-85EC-AABE9CFC5066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesBatchService", "FilesBatchService\FilesBatchService.csproj", "{0C1667C3-48F7-4002-85EC-AABE9CFC5066}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

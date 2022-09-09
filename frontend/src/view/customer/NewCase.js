@@ -132,18 +132,18 @@ export default function NewCase() {
 
         const urlRequestCredit = path.join('/credit');
         await postRequestUnauthorized(urlRequestCredit, history, {
-            'CustomerDTO' : {
-                'fullname': fullname,
-                'birthdate': birthdate,
+            'CustomerRequest' : {
+                'FullName': fullname,
+                'Birthdate': birthdate,
                 'IdentityType':  identityTypeId,
                 'IdentityNumber': identityNumber,
-                'email': email,
+                'Email': email,
                 'CellPhoneNumber': phone,
-                'salary': salary
+                'Salary': salary
             },
             'AmountRequest': ammountRequested,
-            'comments': comments,
-            'id': creditId
+            'Comments': comments,
+            'Id': creditId.id
         });
 
         setShowConfirmation(true);

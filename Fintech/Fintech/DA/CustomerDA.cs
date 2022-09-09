@@ -1,15 +1,15 @@
-﻿using Fintech.Models;
+﻿using Fintech.Infrastructure.DataAccess;
 
 namespace Fintech.DA
 {
     public interface ICustomerDA
     {
-        string GetEmailCustomer(int creditRequestId);
+       // string GetEmailCustomer(int creditRequestId);
     }
 
     public class CustomerDA : ICustomerDA
     {
-        private readonly FintechContext _context;
+        /*private readonly FintechContext _context;
 
         public CustomerDA(FintechContext context)
         {
@@ -28,6 +28,6 @@ namespace Fintech.DA
                          }).SingleOrDefault();
 
             return email.Email;
-        }
+        }*/
     }
 }
