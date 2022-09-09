@@ -7,7 +7,6 @@ using Fintech.Application.UseCases.GetCreditsPendding;
 using Fintech.Application.UseCases.GetIdentityType;
 using Fintech.Application.UseCases.Login;
 using Fintech.Application.UseCases.UploadImagenCredit;
-using Fintech.DA;
 using Fintech.Domain;
 using Fintech.DTOs;
 using Fintech.Infrastructure.DataAccess;
